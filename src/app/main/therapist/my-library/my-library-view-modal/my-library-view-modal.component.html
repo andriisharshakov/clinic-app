@@ -1,0 +1,28 @@
+<div appBsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bodal"
+    aria-hidden="true" [config]="{backdrop: 'static', keyboard: false}">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    {{libraryEntry?.title}}
+                </h4>
+                <button class="close" type="button" (click)="close()" [attr.aria-label]="l('close')"
+                    [disabled]="isBusy">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+
+            <!-- Player -->
+            <div plyr class="w-100 d-flex flex-wrap justify-content-center video-player" (plyrInit)="player=$event"
+                [plyrOptions]="videoOptions" [plyrPoster]="libraryEntry?.posterImage"
+                [plyrSources]="libraryEntry?.videoSourceUrls">
+            </div>
+
+            <!-- Footer -->
+            <div *ngIf="!isEmpty(prescription)"
+                [innerHTML]="prescription">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="row align-items-center my-patients-results">
+    <div class="primeng-datatable-container" [busyIf]="primengTableHelper.isLoading">
+        <p-dataView #dataView [value]="primengTableHelper.records" [paginator]="false" [rows]="3" [layout]="'grid'"
+            class="container">
+            <ng-template let-myPatient pTemplate="gridItem">
+                <div class="p-col-12 mb-3 d-flex flex-wrap my-patients-results__item">
+                    <div class="card text-center">
+                        <div class="d-flex align-items-center flex-column position-relative">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- My Patient profile picture -->
+                                    <app-profile-picture [userId]="myPatient.patient.id" [divClass]="'mr-3'">
+                                    </app-profile-picture>
+                                </div>
+                            </div>
+
+                            <div class="row" style="min-height: 45px;">
+                                <div class="col-12">
+                                    <!-- My Patient name -->
+                                    <strong class="mb-4 font-size-h5 text-dark-75 text-hover-none">
+                                        {{myPatient.patient.name}} {{myPatient.patient.surname}}
+                                    </strong>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- My Patient action buttons -->
+                                    <div class="mb-2 d-flex justify-content-end">
+                                        <button class="btn btn-primary btn-icon btn-circle" (click)="viewMyPatient(myPatient)">
+                                            <i class="flaticon2-user-1"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-icon btn-circle" (click)="editMyPatient(myPatient)">
+                                            <i class="flaticon2-edit"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-icon btn-circle" [app-init-chat]="myPatient.patient">
+                                            <i class="flaticon-chat-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+        <div class="primeng-no-data" *ngIf="primengTableHelper.totalRecordsCount == 0">
+            {{ "NoData" | localize }}
+        </div>
+        <div class="primeng-paging-container">
+            <p-paginator [rows]="itemsPerPage" #paginator (onPageChange)="getMyPatients($event)"
+                [rowsPerPageOptions]="[itemsPerPage]" [totalRecords]="primengTableHelper.totalRecordsCount">
+                <!--[rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage"-->
+            </p-paginator>
+            <span class="total-records-count">
+                {{ "TotalRecordsCount" | localize: primengTableHelper.totalRecordsCount }}
+            </span>
+        </div>
+    </div>
+</div>

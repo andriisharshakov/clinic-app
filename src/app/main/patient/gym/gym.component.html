@@ -1,0 +1,23 @@
+<div>
+    <div class="content d-flex flex-column flex-column-fluid">
+        <sub-header [title]="l('Patient.Gym')">
+            <div role="actions">
+
+            </div>
+        </sub-header>
+
+        <div [class]="containerClass">
+            <div class="card card-custom gutter-b">
+                <div class="card-body">
+
+                    <app-gym-results #gymResults
+                        (viewPrescriptionEvent)="viewMedia($event)">
+                    </app-gym-results>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-my-library-view-modal #gymViewModal></app-my-library-view-modal>

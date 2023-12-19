@@ -1,0 +1,89 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "start",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "focus": true,
+        "panel": "dedicated"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "typescript",
+        "source": "ts",
+        "applyTo": "closedDocuments",
+        "fileLocation": [
+          "relative",
+          "${cwd}"
+        ],
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "(.*?)"
+          },
+          "endsPattern": {
+            "regexp": "Compiled |Failed to compile."
+          }
+        }
+      }
+      // [
+        // {
+        //   "owner": "typescript",
+        //   "applyTo": "allDocuments",
+        //   "fileLocation": [
+        //     "relative",
+        //     "${workspaceFolder}/src"
+        //   ],
+        //   "source": "[TS] Angular serve",
+        //   "pattern": {
+        //     "regexp": "^(?:\\s*ERROR in )?(src\\/)?(.*):(\\d+):(\\d+)\\s+-\\s+(warning|error)\\s+(.+):\\s+(.*)$",
+        //     "file": 2,
+        //     "line": 3,
+        //     "column": 4,
+        //     "severity": 5,
+        //     "code": 6,
+        //     "message": 7
+        //   }
+        // },
+        // {
+        //   "owner": "typescript",
+        //   "background": {
+        //     "activeOnStart": true
+        //   },
+        //   "applyTo": "allDocuments",
+        //   "fileLocation": [
+        //     "relative",
+        //     "${workspaceFolder}/src"
+        //   ],
+        //   "source": "[TS] angular server [wdm]",
+        //   "pattern": {
+        //     "regexp": "^(?:\\s*ERROR in )?src\\/(.*)\\((\\d+),(\\d+)\\):\\s+(warning|error)\\s+(.+):\\s+(.*)$",
+        //     "file": 1,
+        //     "line": 2,
+        //     "column": 3,
+        //     "severity": 4,
+        //     "code": 5,
+        //     "message": 6
+        //   }
+        // }
+      //]
+    },
+    {
+      "type": "shell",
+      "label": "Re-genarate Service Proxies",
+      "command": ".\\refresh.bat",
+      "options": {
+        "cwd": "${workspaceFolder}/nswag"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

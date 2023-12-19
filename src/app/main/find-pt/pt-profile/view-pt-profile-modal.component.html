@@ -1,0 +1,51 @@
+<div appBsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="viewModal" aria-hidden="true" [config]="{backdrop: 'static', keyboard: true}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div *ngIf="active">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="user.id">PT profile: {{user.userName}}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" [attr.aria-label]="l('Close')">
+                         <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-3 text-center mb-5 mt-5">
+                            <img src="{{profilePicture}}" width="128" height="128" class="img-thumbnail img-rounded" />
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <label for="Name">{{ l("FirstName") }}</label>
+                                <input id="Name" #nameInput="ngModel" class="form-control" type="text" name="Name"
+                                       [(ngModel)]="user.name" readonly>
+                                <validation-messages [formCtrl]="nameInput"></validation-messages>
+                            </div>
+                
+                            <div class="form-group">
+                                <label for="Surname">{{ l("Surname") }}</label>
+                                <input id="Surname" #surnameInput="ngModel" type="text" name="Surname" class="form-control"
+                                       [(ngModel)]="user.surname" readonly>
+                                <validation-messages [formCtrl]="surnameInput"></validation-messages>
+                            </div>
+
+                            <div class="form-group" *ngIf="user.bioAndBackground">
+                                <label for="BioAndBackground">{{l('MySettings.BioAndBackground')}}</label>
+                                <textarea name="BioAndBackground" id="BioAndBackground" [(ngModel)]="user.bioAndBackground" class="form-control my-settings__bio" readonly></textarea>
+                            </div>
+
+                            <div class="form-group" *ngIf="user.externalLinkUrl">
+                                <label for="ExternalLinkUrls">{{l('MySettings.ExternalLinkUrl')}}</label>
+                                <textarea name="ExternalLinkUrls" id="ExternalLinkUrls" [(ngModel)]="user.externalLinkUrl" class="form-control my-settings__external-url" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary font-weight-bold" (click)="close()">{{ l("Close") }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

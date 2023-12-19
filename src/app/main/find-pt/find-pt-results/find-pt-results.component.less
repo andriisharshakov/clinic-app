@@ -1,0 +1,43 @@
+.find-pt-results {
+    &__item {
+        flex-shrink: 1;
+        flex-basis: 33%;
+
+        @media (max-width:1023px) {
+            flex-basis: 49%;
+        }
+
+        @media (max-width:767px) {
+            flex-basis: 100%;
+        }
+    }
+
+    ::ng-deep {
+        .ui-dataview-header.ui-widget-header {
+            display: none;
+        }
+
+        .ui-dataview-content.ui-widget-content {
+            border: none;
+        }
+
+        .p-grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            padding: 1rem 1.25rem;
+            width: 100%;
+            margin: 1rem;
+        }
+
+        .find-pt-results__label {
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            min-height: 40px;
+            height: auto;
+            margin-right: 1rem;
+        }
+    }
+}

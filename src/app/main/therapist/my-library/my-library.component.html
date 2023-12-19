@@ -1,0 +1,107 @@
+<div>
+    <div class="content d-flex flex-column flex-column-fluid">
+        <sub-header [title]="(isGeneral ? 'GeneralLibrary' : 'Therapist.MyLibrary') | localize">
+            <div role="actions" *ngIf="!isGeneral">
+                <button *ngIf="'Pages.Tenant.Therapist.MyLibrary.Create' | permission" (click)="uploadMedia()"
+                    class="btn btn-primary">
+                    <i class="fa fa-plus"></i>{{l('Upload')}}</button>
+            </div>
+        </sub-header>
+        <div [class]="containerClass">
+            <div class="card card-custom gutter-b">
+                <div class="card-body">
+
+                    <form class="kt-form" autocomplete="off">
+                        <!-- Simple Search Filter -->
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="form-group m-form__group align-items-center">
+                                    <div class="input-group keywords">
+                                        <p-autoComplete #keywordsAutoComplete id="keywordsAutoComplete" id="keywordsAutoComplete"
+                                            inputStyleClass="form-control" styleClass="width-percent-100" [(ngModel)]="keywordsFilter"
+                                            [suggestions]="suggestedKeywords" (completeMethod)="filterKeywords($event)" name="keywords" field="name"
+                                            (keydown.tab)="createFauxKeyword($event)" (keydown.enter)="createFauxKeyword($event)"
+                                            [multiple]="true" [placeholder]="l('Therapist.MyLibrary.KeywordPlaceholder')">
+                                        </p-autoComplete>
+                                        <div class="input-group-append">
+                                            <button (click)="reloadResults()" class="btn btn-primary" type="submit">
+                                                <i class="flaticon-search-1"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Advanced Search Filter -->
+                        <!-- TODO: currently the advanced filter is not needed -->
+                        <!-- <div class="row" [hidden]="!advancedFiltersAreShown">
+                            <div class="col-md-12">
+                                <div class="kt-separator kt-separator--border-dashed"></div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="titleFilter">{{l("Therapist.MyLibrary.Filter.Title")}}</label>
+                                    <input type="text" class="form-control" id="titleFilter" name="titleFilter"
+                                        [(ngModel)]="titleFilter">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label
+                                        for="descriptionFilter">{{l("Therapist.MyLibrary.Filter.Description")}}</label>
+                                    <input type="text" class="form-control" id="descriptionFilter"
+                                        name="descriptionFilter" [(ngModel)]="descriptionFilter">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label
+                                        for="QuestionKeyFilterSelect">{{l("Therapist.MyLibrary.Filter.Keywords")}}</label>
+                                    <p-autoComplete #keywordsAutoComplete id="keywordsAutoComplete"
+                                        class="mb-2 d-flex networks-autocomplete" [(ngModel)]="keywordsFilter"
+                                        [suggestions]="suggestedKeywords" (completeMethod)="filterKeywords($event)"
+                                        name="keywords" field="name" [multiple]="true"
+                                        [placeholder]="l('Therapist.MyLibrary.KeywordPlaceholder')">
+                                    </p-autoComplete>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- Chevron to enable advanced filter -->
+                        <!-- TODO: currently the advanced filter is not needed -->
+                        <!-- <div class="row mb-2">
+                            <div class="col-sm-12">
+                                <span class="clickable-item text-muted" *ngIf="!advancedFiltersAreShown"
+                                    (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i
+                                        class="fa fa-angle-down"></i> {{l("ShowAdvancedFilters")}}</span>
+                                <span class="clickable-item text-muted" *ngIf="advancedFiltersAreShown"
+                                    (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i
+                                        class="fa fa-angle-up"></i> {{l("HideAdvancedFilters")}}</span>
+                            </div>
+                        </div> -->
+                    </form>
+
+                    <app-my-library-results #myLibraryResults 
+                        [isGeneral]="isGeneral"
+                        [entryId]="entryId"
+                        [titleFilter]="titleFilter"
+                        [textFilter]="textFilter"
+                        [descriptionFilter]="descriptionFilter"
+                        [keywordsFilter]="keywordsFilter"
+                        (editLibraryEntryEvent)="editMedia($event)"
+                        (viewLibraryEntryEvent)="viewMedia($event)"
+                        (showPtProfileEvent)="showPtProfile($event)">
+                    </app-my-library-results>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<viewPtProfileModal #viewPtProfileModal></viewPtProfileModal>
+<app-my-library-upload-modal #myLibraryUploadModal (libraryEntrySavedEvent)="reloadResults()">
+</app-my-library-upload-modal>
+<app-my-library-view-modal #myLibraryViewModal></app-my-library-view-modal>

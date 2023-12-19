@@ -1,0 +1,90 @@
+.file-uploader {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    color: var(--primary);
+    cursor: pointer;
+    background-color: var(--primary-lightened2);
+    transition: all 0.3s;
+    position: relative;
+
+    &__btn-close {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        border-radius: 50% !important;
+        background-color: var(--primary) !important;
+        border-color: var(--primary) !important;
+        width: 33px;
+        height: 33px;
+        .ki-close:before {
+            font-family: "primeicons";
+            content: "\e90b";
+            font-size: 1rem;
+        }
+    }
+    &__img-block {
+        border: 1px solid #c8c8c8 !important;
+        padding: 8px 14px;
+        width: 100%;
+    }
+    &__img {
+        width: 100%;
+        max-width: 90%;
+        object-fit: cover;
+    }
+    ::ng-deep {
+        .ui-fileupload-row > div:empty {
+            display: none !important;
+        }
+        .ui-fileupload-files .ui-button.ui-button-icon-only {
+            top: 10px !important;
+            right: 10px !important;
+        }
+        .ui-fileupload-files {
+            margin-top: 0.5rem;
+            width: 100%;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            .ui-button.ui-widget {
+                position: absolute;
+                top: 30px;
+                right: 35px;
+            }
+        }
+        .ui-fileupload-content,
+        .ui-fileupload-buttonbar {
+            text-align: center;
+            padding: 0 !important;
+            .row {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+        }
+        .ui-button-icon-left.ui-clickable {
+            font-size: 1rem;
+        }
+        .ui-progressbar.ui-widget {
+            display: none;
+        }
+    }
+}
+p-fileupload {
+    width: 100%;
+    text-align: center;
+}
+
+.file-uploader:hover {
+    border-color: var(--success) !important;
+    color: var(--success) !important;
+}
+
+.file-uploader i {
+    font-size: 3rem;
+}

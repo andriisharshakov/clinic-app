@@ -1,0 +1,19 @@
+<div>
+    <div class="content d-flex flex-column flex-column-fluid">
+        <sub-header [title]="'Therapist.Appointments' | localize">
+            <!--[description]="'UsersHeaderInfo' | localize"  [@routerTransition]-->
+            <div role="actions">
+                <!-- <button #authGoogleBtn class="btn btn-secondary" (click)="tryAuthGoogle()">GAuth</button> -->
+            </div>
+        </sub-header>
+        <div [class]="containerClass">
+            <div class="card card-custom gutter-b position-relative" [busyIf]="isLoading">
+                <div class="m-2 calendar">
+                    <p-fullCalendar [events]="calendarEvents" [options]="calendarOptions"></p-fullCalendar>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-appointment-modal #appointmentsModal (onAppointmentCancelled)="appointmentCancelled($event)"></app-appointment-modal>

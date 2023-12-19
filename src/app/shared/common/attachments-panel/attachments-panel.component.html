@@ -1,0 +1,35 @@
+<div [busyIf]="loading">
+    <div *ngIf="attachments && attachments.length > 0; else noAttachment" class="table-wrapper w-100">
+        <table class="table table-responsive table-striped table-hover table-sm" style="display: table;">
+            <tr *ngFor="let item of attachments" class="attachments-table-row">
+                <td class="attachments-table-file-column" (click)="fileDownloadEvent(item.attachment)">
+                    <span>
+                        <strong>{{ item.attachment.fileName }}</strong>
+                    </span>
+                </td>
+                <td class="attachments-table-date-column" (click)="fileDownloadEvent(item.attachment)">
+                    <span>
+                        {{ item.attachment.creationTimestamp | momentFormat: 'LL' }} {{ item.attachment.creationTimestamp | momentFormat: 'LT' }}
+                    </span>
+                </td>
+                <td class="attachments-table-actions-column" *ngIf="isEditable">
+                    <button type="button" class="btn btn-primary btn-sm" (click)="fileDeleteEvent(item.attachment)">
+                        <i class="far fa-trash-alt"></i> {{'Delete' | localize}}
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <ng-template #noAttachment>
+        <p>
+            No files attached.
+        </p>
+    </ng-template>
+
+    <p class="pt-3" *ngIf="isEditable" [busyIf]="uploading">
+        <label class="btn btn-primary btn-sm">
+            <i class="fas fa-file-upload"></i> {{ 'Select file and upload' | localize }}
+            <input type="file" #fileInput hidden (change)="fileChangeEvent($event)" [disabled]="uploading" />
+        </label>
+    </p>
+</div>

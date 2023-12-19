@@ -1,0 +1,41 @@
+<div>
+    <div class="content d-flex flex-column flex-column-fluid">
+        <sub-header [title]="l('Therapist.MyPatients')">
+            <div role="actions">
+
+            </div>
+        </sub-header>
+        <div [class]="containerClass">
+            <div class="card card-custom gutter-b">
+                <div class="card-body">
+
+                    <form class="kt-form" autocomplete="off">
+                        <!-- Simple Search Filter -->
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="form-group m-form__group align-items-center">
+                                    <div class="input-group keywords">
+                                        <input [(ngModel)]="textFilter" name="textFilter" autoFocus
+                                            class="form-control m-input" [placeholder]="l('SearchWithThreeDot')"
+                                            type="text">
+                                        <div class="input-group-append">
+                                            <button (click)="myPatientsResults.getMyPatients()" class="btn btn-primary" type="submit">
+                                                <i class="flaticon-search-1"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <app-my-patients-results #myPatientsResults
+                        (editLibraryEntryEvent)="editMyPatient($event)"
+                        [textFilter]="textFilter">
+                    </app-my-patients-results>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-my-patients-edit-modal #myPatientsEditModal (myPatientSavedEvent)="reload()"></app-my-patients-edit-modal>

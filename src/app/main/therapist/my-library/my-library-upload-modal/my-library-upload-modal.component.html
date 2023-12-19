@@ -1,0 +1,82 @@
+<div appBsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bodal"
+    aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <form *ngIf="active" #userForm="ngForm" novalidate (ngSubmit)="submit()">
+                <!-- Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{title}}
+                    </h4>
+                    <button class="close" type="button" (click)="close()" [attr.aria-label]="l('close')">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <!-- Body -->
+                <div class="modal-body d-flex flex-column">
+                    <div class="form-group">
+                        <label for="Library_Title">{{l("Therapist.MyLibrary.Title")}} *</label>
+                        <input type="text" id="Library_Title" class="form-control" [(ngModel)]="libraryEntry.title"
+                            name="Title" required />
+                    </div>
+
+                    <!-- TODO: check what is the use for description (if any) -->
+                    <!-- <div class="form-group">
+                        <label for="Library_Description">{{l("Therapist.MyLibrary.Description")}}</label>
+                        <input type="text" id="Library_Description" class="form-control"
+                            [(ngModel)]="libraryEntry.description" name="Description" />
+                    </div> -->
+
+                    <div class="form-group">
+                        <label class="d-flex align-items-center">
+                            <input type="checkbox" [(ngModel)]="libraryEntry.isGeneral" name="IsGeneral" />
+                            <span class="ml-2">{{l("Therapist.MyLibrary.IsGeneral")}}</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group keywords">
+                        <label for="keywordsAutoComplete">{{l("Therapist.MyLibrary.Keywords")}}</label>
+                        <p-autoComplete #keywordsAutoComplete id="keywordsAutoComplete" id="keywordsAutoComplete"
+                            inputStyleClass="form-control" styleClass="width-percent-100"
+                            [(ngModel)]="libraryEntry.keywords" [suggestions]="suggestedKeywords"
+                            (completeMethod)="filterKeywords($event)" (keydown.tab)="createKeyword($event)"
+                            (keydown.enter)="createKeyword($event)" name="keywords" field="name" [multiple]="true"
+                            [placeholder]="l('Therapist.MyLibrary.KeywordPlaceholder')">
+                        </p-autoComplete>
+                    </div>
+
+                    <div *ngIf="isLibraryEntryNew" class="m-2 file-uploader">
+                        <p-fileUpload #uploadVideoComponent (uploadHandler)="uploadVideo($event)" required="true"
+                            customUpload="true" mode="advanced" accept="video/*" auto="auto"
+                            chooseLabel="{{'Therapist.MyLibrary.PickAVideoFile' | localize}} *">
+                        </p-fileUpload>
+                    </div>
+
+                    <div class="m-2 file-uploader file-uploader--img">
+                        <div *ngIf="!isImageEmpty" class="file-uploader__img-block">
+                            <img class="file-uploader__img" height="128px" [src]="imagePath">
+                        </div>
+                        <p-fileUpload #uploadImageComponent *ngIf="isImageEmpty" (uploadHandler)="uploadImage($event)"
+                            customUpload="true" mode="basic" accept="image/*" auto="auto"
+                            chooseLabel="{{'Therapist.MyLibrary.PickAnImageFile' | localize}}">
+                        </p-fileUpload>
+                        <button type="button" class="file-uploader__btn-close btn btn-primary btn-icon btn-circle"
+                            *ngIf="!isImageEmpty" [attr.aria-label]="l('close')"
+                            (click)="libraryEntry.imageName=undefined;uploadImageComponent.clear()">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary font-weight-bold" (click)="close()">
+                        {{"Cancel" | localize}}
+                    </button>
+                    <button type="submit" class="btn btn-primary font-weight-bold" [disabled]="!isFormAllowed">
+                        <i class="fa fa-save"></i> <span>{{"Confirm" | localize}}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

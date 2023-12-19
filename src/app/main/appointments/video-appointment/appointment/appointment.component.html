@@ -1,0 +1,39 @@
+<div [busyIf]="isLoading">
+    <div class="content d-flex flex-column flex-column-fluid">
+        <sub-header [title]="l('Appointment.Title')">
+            <!--[description]="'UsersHeaderInfo' | localize"  [@routerTransition]-->
+            <div role="actions">
+                <!-- <button #authGoogleBtn class="btn btn-secondary" (click)="tryAuthGoogle()">GAuth</button> -->
+            </div>
+        </sub-header>
+        <div [class]="containerClass">
+            <div class="card card-custom gutter-b position-relative" [busyIf]="isLoading">
+                <div class="remote-participant">
+                    <div *ngIf="!hasParticipant" class="participant-wait">
+                        {{l('Appointment.WaitForJoin', participantName)}}
+                    </div>
+                    <div class="paricipant-container">
+                        <div #participant></div>
+                    </div>
+                    <div class="user-camera">
+                        <app-camera #camera></app-camera>
+                    </div>
+                    <div class="actions-bar">
+                        <button class="btn btn-icon btn-circle btn-lg mr-4"
+                            (click)="toggleMute()"
+                            [ngClass]="isMuted ? 'btn-danger' : 'btn-outline-danger'">
+                            <i class="fas" [ngClass]="isMuted ? 'fa-microphone-slash' : 'fa-microphone'"></i>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-light-primary m-3 float-right" type="button" (click)="settingsModal.show()">
+                        <i class="fas fa-cog"></i> <span>{{l('Appointment.CameraSettings')}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-video-settings-modal #settingsModal></app-video-settings-modal>

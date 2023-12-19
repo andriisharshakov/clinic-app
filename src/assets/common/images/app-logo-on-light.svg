@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 268" width="768" height="268">
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #ffffff } 
+		.txt1 { font-size: 110px;line-height: 1032px;fill: #ffffff;font-weight: 800;font-family: "Almarai-ExtraBold", "Almarai" } 
+		.txt2 { font-size: 64px;line-height: 1032px;fill: #ffffff;font-weight: 300;font-family: "Almarai-Light", "Almarai" } 
+		.txt3 { font-size: 46px;fill: #ffffff;font-weight: 800;font-family: "Almarai-ExtraBold", "Almarai" } 
+		.txt4 { font-size: 46px;fill: #ffffff;font-weight: 400;font-family: "Almarai-Regular", "Almarai" } 
+		.txt5 { font-size: 71px;line-height: 1032px;fill: #ffffff;font-weight: 400;font-family: "Almarai-Regular", "Almarai" } 
+	</style>
+	<path id="1 copy" class="shp0" d="M1593.78 42.87C1615.44 42.87 1633 60.44 1633 82.1C1633 103.76 1615.44 121.32 1593.78 121.32C1572.12 121.32 1554.56 103.76 1554.56 82.1C1554.56 60.44 1572.12 42.87 1593.78 42.87Z" />
+	<path id="2 copy" class="shp0" d="M1711.46 42.87C1733.12 42.87 1750.68 60.44 1750.68 82.1C1750.68 103.76 1733.12 121.32 1711.46 121.32C1689.79 121.32 1672.23 103.76 1672.23 82.1C1672.23 60.44 1689.79 42.87 1711.46 42.87Z" />
+	<path id="7 copy" class="shp0" d="M1593.78 160.55C1615.44 160.55 1633 178.11 1633 199.77C1633 221.43 1615.44 238.99 1593.78 238.99C1572.12 238.99 1554.56 221.43 1554.56 199.77C1554.56 178.11 1572.12 160.55 1593.78 160.55Z" />
+	<path id="8 copy" class="shp0" d="M1712.25 180.94C1723.08 180.94 1731.86 189.73 1731.86 200.56C1731.86 211.39 1723.08 220.18 1712.25 220.18C1701.41 220.18 1692.63 211.39 1692.63 200.56C1692.63 189.73 1701.41 180.94 1712.25 180.94Z" />
+	<path id="13 copy" class="shp0" d="M1593.78 278.22C1615.44 278.22 1633 295.78 1633 317.44C1633 339.11 1615.44 356.67 1593.78 356.67C1572.12 356.67 1554.56 339.11 1554.56 317.44C1554.56 295.78 1572.12 278.22 1593.78 278.22Z" />
+	<path id="14 copy" class="shp0" d="M1711.46 278.22C1733.12 278.22 1750.68 295.78 1750.68 317.44C1750.68 339.11 1733.12 356.67 1711.46 356.67C1689.79 356.67 1672.23 339.11 1672.23 317.44C1672.23 295.78 1689.79 278.22 1711.46 278.22Z" />
+	<path id="6 copy 2" class="shp0" d="M1476.13 42.87C1497.79 42.87 1515.35 60.44 1515.35 82.1C1515.35 103.76 1497.79 121.32 1476.13 121.32C1454.47 121.32 1436.91 103.76 1436.91 82.1C1436.91 60.44 1454.47 42.87 1476.13 42.87Z" />
+	<path id="12 copy 2" class="shp0" d="M1476.91 180.94C1487.74 180.94 1496.51 189.73 1496.51 200.56C1496.51 211.39 1487.74 220.18 1476.91 220.18C1466.08 220.18 1457.3 211.39 1457.3 200.56C1457.3 189.73 1466.08 180.94 1476.91 180.94Z" />
+	<path id="18 copy 2" class="shp0" d="M1476.91 298.62C1487.74 298.62 1496.51 307.4 1496.51 318.22C1496.51 329.05 1487.74 337.83 1476.91 337.83C1466.08 337.83 1457.3 329.05 1457.3 318.22C1457.3 307.4 1466.08 298.62 1476.91 298.62Z" />
+	<text id="PTlinic" style="transform: matrix(1.607,0,0,1.607,-1.53,135.251)" >
+		<tspan x="0" y="0" class="txt1" dx="0 2 2 2 2 2 2" >PTlinic</tspan>
+	</text>
+	<text id="Almarari Font." style="transform: matrix(1,0,0,1,7.563,885.078)" >
+		<tspan x="0" y="0" class="txt2" dx="0 1 1 1 1 1 1 1 1 1 1 1 1 1" >Almarari Font.</tspan>
+	</text>
+	<text id="ABCDEFGHIJKLMNOP QRSTUVWXYZ" style="transform: matrix(1,0,0,1,10.078,984.125)" >
+		<tspan x="0" y="0" class="txt3">ABCDEFGHIJKLMNOP</tspan>
+		<tspan x="0" y="51.333" class="txt3">QRSTUVWXYZ</tspan>
+	</text>
+	<text id="ABCDEFGHIJKLMNOP QRSTUVWXYZ" style="transform: matrix(1,0,0,1,12.078,1125.125)" >
+		<tspan x="0" y="0" class="txt4">ABCDEFGHIJKLMNOP</tspan>
+		<tspan x="0" y="51.333" class="txt4">QRSTUVWXYZ</tspan>
+	</text>
+	<text id="Regular" style="transform: matrix(1,0,0,1,824.869,1168.894)" >
+		<tspan x="0" y="0" class="txt4">Regular</tspan>
+	</text>
+	<text id="Extra Bold" style="transform: matrix(1,0,0,1,824.869,1007.894)" >
+		<tspan x="0" y="0" class="txt3">Extra Bold</tspan>
+	</text>
+	<text id="Your physiotherapist -_-" style="transform: matrix(0.981,0,0,0.981,6.744,249.116)" >
+		<tspan x="0" y="0" class="txt5" dx="0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" >Your physiotherapist -_-</tspan>
+	</text>
+</svg>

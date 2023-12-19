@@ -1,0 +1,48 @@
+<div class="row align-items-center gym-results">
+    <div class="primeng-datatable-container" [busyIf]="primengTableHelper.isLoading">
+        <p-dataView #dataView [value]="primengTableHelper.records" [paginator]="false" [layout]="'list'"
+            class="container">
+            <ng-template let-groupedPrescription pTemplate="listItem">
+                <div class="p-col-12 mb-3 gym-results__item">
+                    <div class="card text-center">
+                        <div class="">
+                            <strong class="mb-2 font-size-h5 text-dark-75 text-hover-none">
+                                {{getFullName(groupedPrescription.therapist)}}
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div class="gym-results__scroll">
+                        <p-dataView [value]="groupedPrescription.prescriptions" [paginator]="false" [layout]="'grid'">
+                            <ng-template let-prescription pTemplate="gridItem">
+                                <div class="gym-results__item__prescription">
+                                    <div class="card text-center">
+                                        <div class="">
+                                            <strong class="font-size-h5 text-dark-75 text-hover-none">
+                                                {{prescription.title}}
+                                            </strong>
+                                        </div>
+    
+                                        <div class="poster">
+                                            <div class="poster__bg">
+                                                <button class="poster__btn btn btn-primary btn-icon btn-circle"
+                                                    (click)="viewPrescription(prescription)">
+                                                    <i class="fas fa-play ml-1">
+                                                    </i>
+                                                </button>
+                                            </div>
+                                            <i *ngIf="isEmpty(prescription.posterImage)"
+                                                class="poster__placeholder fa fa-video"></i>
+                                            <img class="poster__image" *ngIf="!isEmpty(prescription.posterImage)"
+                                                [src]="prescription.posterImage">
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-dataView>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+</div>

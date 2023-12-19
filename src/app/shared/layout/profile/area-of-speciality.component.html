@@ -1,0 +1,6 @@
+<div *ngFor="let speciality of allSpecialities | enumToArray" class="form-check mb-3 pl-4">
+    <input [ngModel]="isSelected(speciality.key)" (ngModelChange)="specialityChanged($event, speciality.key)" type="checkbox" name="{{speciality.value}}" id="{{speciality.value}}" class="form-check-input mr" />
+    <label class="form-check-label" for="{{speciality.value}}">
+        {{l(speciality.value)}}
+    </label>
+</div>

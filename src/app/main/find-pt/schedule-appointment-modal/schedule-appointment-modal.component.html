@@ -1,0 +1,67 @@
+<div appBsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bodal" aria-hidden="true"
+     [config]="{backdrop: 'static', keyboard: !saving}" (onShown)="onShown()">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <form *ngIf="active" #userForm="ngForm" novalidate (ngSubmit)="submit()">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{l('FindPT.Appointment.ScheduleTitleFormat', getTherapistFullName(therapist))}}
+                    </h4>
+                    <button type="button" class="close" (click)="close()" [attr.aria-label]="l('Close')" [disabled]="saving">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body d-flex align-items-center flex-column">
+                    <div class="d-flex align-items-center flex-row mb-3">
+                        <div class="symbol">
+                            <img class="mr-3"
+                                 [src]="therapist.profilePictureUrl"
+                                 [alt]="getTherapistFullName(therapist)" />
+                        </div>
+                        <div class="text-muted mt-1 d-flex flex-column">
+                            <strong class="mb-1 font-size-h5 text-dark-75 text-hover-primary">
+                                {{ getTherapistFullName(therapist) }}
+                            </strong>
+                        </div>
+                    </div>
+                    <div *ngIf="currentStep === Step.ChooseDate" class="position-relative">
+                        <div [busyIf]="isLoadingTimeSlots">
+                            <bs-datepicker-inline (bsValueChange)="dateSelected($event)" [bsConfig]="bsConfig">
+                            </bs-datepicker-inline>
+                        </div>
+                    </div>
+                    <div *ngIf="currentStep === Step.ChooseTimeSlot"
+                         class="position-relative d-flex align-items-center flex-column slots-selection-container">
+                        <div class="d-flex align-items-center flex-column slots">
+                            <div *ngFor="let slot of therapistSlots">
+                                <a href="#" class="btn slot text-primary p-1" [ngClass]="{'disabled': slot.isBusy}"
+                                   *ngIf="!slot.isBusy"
+                                   (click)="$event.preventDefault(); selectSlot(slot)">
+                                    {{slot.startDisplay}} - {{slot.endDisplay}}
+                                    <!-- <span class="ml-1" *ngIf="slot.isBusy">TAKEN</span> -->
+                                </a>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-light-primary" (click)="backToDateSelection()">{{l('Back')}}</button>
+                    </div>
+                    <div *ngIf="currentStep === Step.Confirm">
+                        <p>{{l('FindPT.Appointment.SelectedDate')}}: <b>{{selectedDate.format('l')}}</b></p>
+                        <p>{{l('FindPT.Appointment.SelectedTimeSlot')}}: <b>{{selectedSlot.startDisplay}} - {{selectedSlot.endDisplay}}</b></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-light-primary font-weight-bold" (click)="close()">
+                        {{"Cancel" | localize}}
+                    </button>
+                    <button type="submit" class="btn btn-primary font-weight-bold"
+                            [disabled]="currentStep !== Step.Confirm"
+                            [buttonBusy]="saving"
+                            [busyText]="l('SavingWithThreeDot')">
+                        <i class="fa fa-save"></i> <span>{{"Confirm" | localize}}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

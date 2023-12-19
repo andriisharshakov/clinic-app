@@ -1,0 +1,16 @@
+<div class="form-group text-center">
+    <label class="form-label pb-2" *ngIf="isEditable">
+        You can circle area(s) of body requiring therapy&nbsp;
+        <button (click)="clearCanvas()" class="btn btn-secondary">
+            Press to reset
+        </button>
+        <!-- <br /><a href="javascript:;" (click)="pushSelfReportPictureToUploader()">Click here to save.</a> -->
+    </label>
+
+    <canvas id="canvas" #bodyCanvas
+            class="body-canvas"
+            [ngClass]="{ 'body-canvas-editable': isEditable }"
+            style="background: url('./assets/common/images/body-contour.png')">
+        Your browser does not support the canvas element.
+    </canvas>
+</div>

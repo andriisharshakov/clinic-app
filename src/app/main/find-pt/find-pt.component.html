@@ -1,0 +1,66 @@
+<div>
+    <div class="content d-flex flex-column flex-column-fluid">
+        <sub-header [title]="'Page.FindPT' | localize">
+            <!--[description]="'UsersHeaderInfo' | localize"  [@routerTransition]-->
+            <div role="actions">
+            </div>
+        </sub-header>
+        <div [class]="containerClass">
+            <div class="card card-custom gutter-b">
+                <div class="card-body" *ngIf="currentStep == Step.SelectSpecialty">
+                    <div>
+                        <h5>{{l('FindPT.SelectSpecialtyMsg')}}</h5>
+                    </div>
+
+                    <div *ngFor="let speciality of allSpecialities | enumToArray">
+                        <button type="button" class="btn btn-outline-primary mb-1" [ngClass]="{'active': (selectedSpecialty === speciality.key)}"
+                                (click)="selectedSpecialty = speciality.key">
+                            {{l(speciality.value)}}
+                        </button>
+                        <!-- <input [ngModel]="isSelected(speciality.key)" (ngModelChange)="specialityChanged($event, speciality.key)" type="checkbox" name="{{speciality.value}}" id="{{speciality.value}}" class="form-check-input"/>
+                        <label class="form-check-label" for="{{speciality.value}}">
+                            {{l(speciality.value)}}
+                        </label> -->
+                    </div>
+                    <div class="separator separator-solid separator-border-1 mb-1"></div>
+                    <div>
+                        <button class="btn btn-primary font-weight-bold" type="button"
+                                [disabled]="selectedSpecialty == null"
+                                (click)="switchToResultsView()">
+                            {{l('FindPT.Continue')}}
+                        </button>
+                    </div>
+                </div>
+
+                <div class=card-body *ngIf="currentStep == Step.ShowResults">
+                    <form class="form">
+                        <div class="row align-items-center">
+                            <div class="col-xl-12">
+                                <div class="form-group m-form__group align-items-center">
+                                    <!-- <p-autoComplete [(ngModel)]="selectedSpecialty"
+                                                    id="SingleSelectInput"
+                                                    [suggestions]="filteredSpecialtyOptions"
+                                                    (completeMethod)="filterSpecialtyOptions($event)"
+                                                    field="name"
+                                                    placeholder="Country"
+                                                    [minLength]="0"
+                                                    name="SingleSelectInput"
+                                                    inputStyleClass="form-control"
+                                                    styleClass="">
+                                    </p-autoComplete> -->
+                                    <select class="form-control" [(ngModel)]="selectedSpecialty" name="selectedSpecialty">
+                                        <option [ngValue]="null">{{'FindPT.FilterBySpecialty' | localize}}</option>
+                                        <option *ngFor="let specialty of specialtyOptions" [ngValue]="specialty.value">
+                                            {{specialty.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <app-find-pt-results [specialty]="selectedSpecialty"></app-find-pt-results>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

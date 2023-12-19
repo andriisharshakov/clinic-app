@@ -1,0 +1,77 @@
+.patient-panel {
+    text-align: center;
+}
+
+::ng-deep {
+    .ui-dataview-emptymessage {
+        display: none;
+    }
+}
+
+p-autocomplete {
+    padding: 0;
+}
+
+.prescription-panel {
+    height: 30rem;
+}
+
+.card-hint {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: #888888;
+}
+
+.library-entries-panel {
+    height: 17em;
+    overflow-y: auto;
+
+    &__item {
+        flex-shrink: 1;
+        flex-basis: 33%;
+        max-width: 33%;
+
+        @media (max-width: 1023px) {
+            flex-basis: 33%;
+            max-width: 33%;
+        }
+
+        @media (max-width: 767px) {
+            flex-basis: 100%;
+            max-width: 100%;
+        }
+    }
+
+    ::ng-deep {
+        p-dataview {
+            .ui-dataview-header.ui-widget-header {
+                display: none;
+            }
+            .ui-dataview-content {
+                border: 0;
+            }
+        }
+
+        //TODO: not working
+        .library-entry-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: default;
+        }
+        .card {
+            padding: 0.2rem;
+            width: 100%;
+            margin: 0.2rem;
+        }
+        .p-grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .selection-highlight {
+            color: blue;
+            border-color: blue;
+            background-color: rgba(0,0,255,0.1);
+        }
+    }
+}

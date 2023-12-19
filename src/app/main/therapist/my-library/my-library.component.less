@@ -1,0 +1,83 @@
+::ng-deep {
+    // .networks-autocomplete {
+    //     .ui-autocomplete,
+    //     .ui-autocomplete-input-token input,
+    //     .ui-autocomplete-input-token {
+    //         width: 100% !important;
+    //     }
+    // }
+    .keywords {
+        .ui-autocomplete.ui-autocomplete-multiple
+            .ui-autocomplete-multiple-container {
+            &:hover {
+                border: 1px solid var(--secondary) !important;
+            }
+            &.ui-state-focus {
+                border-color: #69b3ff !important;
+                outline: 0 !important;
+                box-shadow: none !important;
+            }
+            padding: 0 !important;
+            border-radius: 0.42rem !important;
+            .ui-autocomplete-input-token {
+                padding: 0 !important;
+            }
+        }
+        .ui-inputtext {
+            border: 1px solid var(--secondary);
+        }
+        .ui-autocomplete-input-token input {
+            width: 100%;
+            height: calc(1.5em + 1.3rem + 2px);
+            padding: 0.65rem 1rem !important;
+            font-size: 1rem !important;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--gray-dark);
+            background-color: var(--white);
+        }
+        p-autoComplete {
+            padding: 0;
+            width: 92.5% !important;
+        }
+    }
+
+    .ui-autocomplete-token {
+        background-color: var(--primary) !important;
+    }
+    .ui-autocomplete-token-icon {
+        font-size: 1rem !important;
+        right: 0.5rem !important;
+    }
+    .ui-fileupload-choose.ui-button {
+        background-color: var(--primary) !important;
+        padding: 0.65rem 1rem !important;
+        font-size: 1rem !important;
+        line-height: 1.5;
+        border-radius: 0.42rem !important;
+        border-color: var(--primary) !important;
+        font-family: "Poppins", Helvetica, sans-serif !important;
+        .pi.pi-plus {
+            font-weight: 900 !important;
+            font-size: 1.3rem !important;
+            font-family: "Font Awesome 5 Free" !important;
+            padding-right: 0.35rem !important;
+            &:before {
+                content: "\f067" !important;
+            }
+        }
+    }
+    .ui-button.ui-button-text-icon-left .ui-button-text {
+        padding: 0 0 0 1.3rem !important;
+    }
+    .ui-widget-content.ui-corner-bottom {
+        border: 0 !important;
+    }
+    .ui-fileupload-files {
+        border: 1px solid #c8c8c8 !important;
+        .ui-corner-all.ui-button-icon-only {
+            border-radius: 7px;
+            border-color: var(--success) !important;
+        }
+    }
+}

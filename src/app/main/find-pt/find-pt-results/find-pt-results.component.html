@@ -1,0 +1,80 @@
+<div class="row align-items-center find-pt-results">
+    <div
+         class="primeng-datatable-container"
+         [busyIf]="primengTableHelper.isLoading">
+        <p-dataView
+                    #dataView
+                    [value]="primengTableHelper.records"
+                    [paginator]="false"
+                    [rows]="10"
+                    [layout]="'grid'"
+                    class="container">
+            <ng-template let-therapist pTemplate="listItem">
+                <div>
+                    {{ therapist.id }}
+                </div>
+            </ng-template>
+            <ng-template let-therapist pTemplate="gridItem">
+                <div
+                     class="p-col-12 mb-3 d-flex flex-wrap find-pt-results__item">
+                    <div class="card text-center">
+                        <div class="d-flex align-items-center flex-column">
+                            <app-profile-picture [userId]="therapist.id" [divClass]="'mr-3'" [fullName]="getFullName(therapist)">
+                            </app-profile-picture>
+                            <!-- <div class="symbol">
+                                <img
+                                     class="mr-3"
+                                     [src]="therapist.profilePictureUrl"
+                                     [alt]="getFullName(therapist)" />
+                            </div> -->
+                            <div class="text-muted mt-1 d-flex flex-column">
+                                <strong class="mb-1 font-size-h5 text-dark-75 text-hover-none">
+                                    <a href="javascript:;" (click)="showPtProfile(therapist.id)">{{ getFullName(therapist) }}</a>
+                                </strong>
+                                <div
+                                     class="w-100 d-flex flex-wrap justify-content-center">
+                                    <span *ngFor="let spec of therapist.specialties"
+                                          class="find-pt-results__label label label-light-primary label-inline">
+                                        {{ l(allSpecialities[spec]) }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <button class="btn btn-primary font-weight-bold" type="button"
+                                        [app-init-chat]="therapist">
+                                    {{l('Reach me in chat')}}
+                                </button>
+                            </div>
+                            <div class="mt-2">
+                                <button class="btn btn-primary font-weight-bold" type="button"
+                                        (click)="openScheduleModal(therapist)">
+                                    {{l('FindPT.ScheduleAppointment')}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+        <div
+             class="primeng-no-data"
+             *ngIf="primengTableHelper.totalRecordsCount == 0">
+            {{ "NoData" | localize }}
+        </div>
+        <div class="primeng-paging-container">
+            <p-paginator [rows]="itemsPerPage"
+                         #paginator
+                         (onPageChange)="searchTherapists($event)"
+                         [rowsPerPageOptions]="[itemsPerPage]"
+                         [totalRecords]="primengTableHelper.totalRecordsCount">
+                <!--[rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage"-->
+            </p-paginator>
+            <span class="total-records-count">
+                {{ "TotalRecordsCount" | localize: primengTableHelper.totalRecordsCount }}
+            </span>
+        </div>
+    </div>
+</div>
+
+<viewPtProfileModal #viewPtProfileModal></viewPtProfileModal>
+<app-schedule-appointment-modal #scheduleModal></app-schedule-appointment-modal>

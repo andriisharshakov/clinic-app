@@ -1,0 +1,82 @@
+<div class="row align-items-center my-library-results">
+    <div class="primeng-datatable-container" [busyIf]="primengTableHelper.isLoading">
+        <p-dataView #dataView [value]="primengTableHelper.records" [paginator]="false" [rows]="3" [layout]="'grid'"
+            class="container">
+            <ng-template let-libraryEntry pTemplate="gridItem">
+                <div class="p-col-12 mb-3 d-flex flex-wrap my-library-results__item">
+                    <div class="card text-center">
+                        <div class="d-flex align-items-center flex-column position-relative w-100">
+                            <strong class="mb-2 font-size-h5 text-dark-75 text-hover-none">
+                                {{ libraryEntry.title }}
+                                <span class="small" *ngIf="isGeneral">
+                                    by <a href="javascript:;" (click)="triggerShowPtProfile(libraryEntry.ownerUserId)"><strong>{{ libraryEntry.ownerDisplayName }}</strong></a>
+                                </span>
+                            </strong>
+                            <div class="poster">
+                                <div *ngIf="isGeneral"
+                                     class="mb-4 poster__icons d-flex justify-content-end">
+                                    <button class="btn btn-white-transparent btn-icon btn-circle"
+                                            *ngIf="'Pages.Tenant.Therapist.MyLibrary' | permission"
+                                            (click)="reportLibraryEntry(libraryEntry)"
+                                            title="Report as inappropriate" data-container="body" data-toggle="tooltip" data-placement="bottom">
+                                        <i class="flaticon-warning-sign"></i>
+                                    </button>
+                                    <button class="btn btn-icon btn-circle"
+                                        [ngClass]="{ 'btn-white-transparent': libraryEntry.endorsementStats?.doesCurrentUserEndorse == false, 'btn-secondary': libraryEntry.endorsementStats?.doesCurrentUserEndorse == true }"
+                                        *ngIf="'Pages.Tenant.Therapist.MyLibrary' | permission"
+                                        (click)="endorseLibraryEntry(libraryEntry)"
+                                        [title]="libraryEntry.endorsementStats?.doesCurrentUserEndorse ? 'Stop endorsing' : 'Endorse'" data-container="body" data-toggle="tooltip" data-placement="bottom">
+                                        <i class="flaticon-like"></i>
+                                    </button>
+                                </div>
+                                <div *ngIf="!isGeneral"
+                                     class="mb-4 poster__icons d-flex justify-content-end">
+                                    <button class="btn btn-primary btn-icon btn-circle">
+                                        <i class="flaticon2-edit" (click)="editLibraryEntry(libraryEntry)"></i>
+                                    </button>
+                                    <button class="btn btn-primary btn-icon btn-circle">
+                                        <i class="flaticon-delete" (click)="deleteLibraryEntry(libraryEntry)"></i>
+                                    </button>
+                                </div>
+                                <div class="poster__bg">
+                                    <button class="poster__btn btn btn-primary btn-icon btn-circle"
+                                        (click)="viewLibraryEntry(libraryEntry)">
+                                        <i class="fas fa-play ml-1"></i>
+                                    </button>
+                                </div>
+                                <i *ngIf="isEmpty(libraryEntry.posterImage)"
+                                    class="poster__placeholder fa fa-video"></i>
+                                <img class="poster__image" *ngIf="!isEmpty(libraryEntry.posterImage)"
+                                    [src]="libraryEntry.posterImage">
+                            </div>
+                            <div class="w-100 d-flex flex-wrap justify-content-center mt-3">
+                                <span *ngFor="let keyword of libraryEntry.keywords"
+                                    class="find-pt-results__label label label-light-primary label-inline">
+                                    {{ keyword.name }}
+                                </span>
+                            </div>
+                            <div *ngIf="isGeneral">
+                                <span class="small justify-content-right" *ngIf="libraryEntry.endorsementStats?.endorseCount">
+                                    {{ libraryEntry.endorsementStats?.endorseCount }} PTs endore this
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+        <div class="primeng-no-data" *ngIf="primengTableHelper.totalRecordsCount == 0">
+            {{ "NoData" | localize }}
+        </div>
+        <div class="primeng-paging-container">
+            <p-paginator #paginator (onPageChange)="searchLibraryEntries($event)"
+                [rows]="itemsPerPage" [rowsPerPageOptions]="[itemsPerPage]" 
+                [totalRecords]="primengTableHelper.totalRecordsCount">
+                <!--[rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage"-->
+            </p-paginator>
+            <span class="total-records-count">
+                {{ "TotalRecordsCount" | localize: primengTableHelper.totalRecordsCount }}
+            </span>
+        </div>
+    </div>
+</div>

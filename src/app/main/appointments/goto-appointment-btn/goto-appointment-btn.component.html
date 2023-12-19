@@ -1,0 +1,3 @@
+<a class="btn btn-light-primary" target="_blank" [routerLink]="['/app/main/appointment/', appointment.id]" [class.disabled]="!isEnabled">
+    <i class="flaticon-time"></i> <span>{{l('Common.GotoAppointment', withName)}}</span>
+</a>

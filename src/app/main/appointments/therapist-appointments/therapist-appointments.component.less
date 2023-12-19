@@ -1,0 +1,43 @@
+:host ::ng-deep {
+    .calendar {
+        .fc-time-grid .fc-slats td {
+            height: 55px;
+        }
+        .fc-event {
+            //height: 55px;
+            border: 1px solid white;
+            // font-weight: bolder;
+            font-size: 0.9em;
+            // background-color: var(--primary) !important;
+            // * {
+            //     color: var(--white);
+            // }
+
+            &.event-appointment {
+                background-color: var(--primary);
+                border: 1px solid var(--primary);
+                cursor: pointer;
+            }
+
+            &.muted {
+                background-color: var(--gray);
+                border: 1px solid var(--gray);
+            }
+        }
+
+        .fc-event .fc-content,
+        .fc-event-dot .fc-content {
+            padding: 0.5rem 0.5rem 0.5rem 0.5rem !important;
+        }
+        .fc-unthemed .fc-event .fc-content:before,
+        .fc-unthemed .fc-event-dot .fc-content:before {
+            display: none;
+            content: none;
+        }
+
+        .fc-today.alert.alert-info {
+            background-color: rgba(54, 153, 255, 0.025);
+            border-color: rgba(54, 153, 255, 0.15) !important;
+        }
+    }
+}

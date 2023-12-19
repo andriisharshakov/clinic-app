@@ -1,0 +1,111 @@
+<div appBsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bodal"
+    aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form *ngIf="active" #userForm="ngForm" novalidate (ngSubmit)="submit()">
+
+                <!-- Header  -->
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{l('Therapist.MyPatients.Modal.Title')}}
+                    </h4>
+                    <button class="close" type="button" (click)="close()" [attr.aria-label]="l('close')">
+                        <i class="ki ki-close" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <!-- Body -->
+                <div class="row modal-body">
+
+                    <!-- Patient (left side) -->
+                    <div class="col-6 patient-panel">
+
+                        <!-- My Patient profile picture -->
+                        <app-profile-picture [userId]="myPatient.patient.id" [divClass]="'mr-3'">
+                        </app-profile-picture>
+
+                        <!-- TODO: check which information should appear here (there's a lot of space) -->
+                    </div>
+
+                    <!-- Library Entries (right side) -->
+                    <div class="col-6 border-left">
+                        <p-autoComplete #libraryEntriesAutoComplete id="libraryEntriesAutoComplete" id="libraryEntriesAutoComplete"
+                            inputStyleClass="form-control" styleClass="width-percent-100" type="search"
+                            [suggestions]="suggestedLibraryEntries" [placeholder]="l('Therapist.MyPatients.LibraryEntryPlaceholder')"
+                            [forceSelection]="true"
+                            (onSelect)="chooseLibraryEntry($event)"
+                            (completeMethod)="filterLibraryEntries($event)" name="libraryEntries">
+                            <!-- Auto complete template -->
+                            <ng-template let-libraryEntry pTemplate="item">
+                                <!-- Library Entry icon -->
+                                <i class="fa fa-video"></i>
+                                {{libraryEntry.title}}
+                            </ng-template>
+                        </p-autoComplete>
+
+                        <div class="card library-entries-panel">
+                            <div class="primeng-datatable-container">
+                                <p-dataView #dataView [value]="gym" [paginator]="false" [rows]="2" [layout]="'grid'">
+                                    <!-- Selected Library Entries template -->
+                                    <ng-template let-prescription pTemplate="gridItem">
+                                        <div class="p-col-12 mb-3 d-flex flex-wrap library-entries-panel__item">
+                                            <div class="card text-center" [ngClass]="{'selection-highlight': prescription.isSelected}">
+                                                <div class="d-flex align-items-center flex-column position-relative"
+                                                    (click)="selectPrescription(prescription)">
+        
+                                                    <!-- Library Entry remove button -->
+                                                    <div class="mb-4 d-flex justify-content-end" 
+                                                        (click)="removeLibraryEntry(prescription)">
+                                                        <i class="flaticon-delete"></i>
+                                                    </div>
+
+                                                    <!-- Library Entry icon -->
+                                                    <i class="fa fa-video"></i>
+        
+                                                    <!-- Library Entry title -->
+                                                    <div class="library-entry-title">
+                                                        {{prescription.libraryEntry.title}}
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </p-dataView>
+                            </div>
+                        </div>
+                        <p class="card-hint" [hidden]="isPrescriptionListEmpty">
+                            {{l('Therapist.MyPatients.PrescriptionHint')}}
+                        </p>
+                        
+                        <!-- Prescription -->
+                        <div class="prescription-panel">
+                            <p-editor *ngIf="!isPrescriptionSelectionEmpty" name="prescription"
+                                [style]="{'height':'25rem'}"
+                                [(ngModel)]="selectedPrescription.prescription">
+                                <p-header>
+                                    <span class="ql-formats">
+                                        <button class="ql-bold" aria-label="Bold"></button>
+                                        <button class="ql-italic" aria-label="Italic"></button>
+                                        <button class="ql-underline" aria-label="Underline"></button>
+                                    </span>
+                                </p-header>
+                            </p-editor>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary font-weight-bold" (click)="close()">
+                        {{"Cancel" | localize}}
+                    </button>
+                    <button type="submit" class="btn btn-primary font-weight-bold">
+                        <i class="fa fa-save"></i> <span>{{"Confirm" | localize}}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

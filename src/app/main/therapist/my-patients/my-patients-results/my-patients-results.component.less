@@ -1,0 +1,35 @@
+.my-patients-results {
+    &__item {
+        flex-shrink: 1;
+        flex-basis: 10%;
+
+        @media (max-width: 1023px) {
+            flex-basis: 10%;
+        }
+
+        @media (max-width: 767px) {
+            flex-basis: 33%;
+        }
+    }
+
+    ::ng-deep {
+        p-dataview {
+            .ui-dataview-header.ui-widget-header {
+                display: none;
+            }
+            .ui-dataview-content {
+                border: 0;
+            }
+        }
+        .p-grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            padding: 1rem 1.25rem;
+            width: 100%;
+            margin: 1rem;
+        }
+    }
+}
